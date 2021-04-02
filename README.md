@@ -19,7 +19,7 @@ Precise is designed to run on Linux.  It is known to work on a variety of Linux 
 You can find info on training your own models [here][train-guide]. It requires
 running through the [**source install instructions**][source-install] first.
 
-**Note: Please use the training-guide mentioned in the link below. It's really helpful.**
+**Note: Please use the training-guide mentioned in the link. It's really helpful and the repo is tested using the commands mentioend in the link.**
 [train-guide]:https://github.com/MycroftAI/mycroft-precise/wiki/Training-your-own-wake-word#how-to-train-your-own-wake-word
 
 ## Installation
