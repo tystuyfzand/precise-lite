@@ -30,7 +30,7 @@ First create a virtual environment to install python packages.
 ```bash
 python3 -m venv venv-name
 source /path/to/venv/venv-name/bin/activate
-pip intsall --upgrade pip
+pip install --upgrade pip
 ```
 
 ### Source Install
