@@ -14,92 +14,31 @@ Precise is designed to run on Linux.  It is known to work on a variety of Linux 
 
 ## Training Models
 
-### Communal models
-
-Training takes lots of data. The Mycroft community is working together to jointly
-build datasets at: 
-https://github.com/MycroftAI/precise-community-data.   
-These datasets are available for anyone to download, use and contribute to. A number 
-of models trained from this data are also provided.
-
-The official models selectable in your device settings at Home.mycroft.ai 
-[can be found here](https://github.com/MycroftAI/precise-data/tree/models).  
-
-Please come and help make things better for everyone!
-
 ### Train your own model
 
 You can find info on training your own models [here][train-guide]. It requires
 running through the [**source install instructions**][source-install] first.
 
+**Note: Please use the training-guide mentioned in the link below. It's really helpful.**
 [train-guide]:https://github.com/MycroftAI/mycroft-precise/wiki/Training-your-own-wake-word#how-to-train-your-own-wake-word
-[source-install]:https://github.com/MycroftAI/mycroft-precise#source-install
 
 ## Installation
 
-If you just want to use Mycroft Precise for running models in your own application,
-you can use the binary install option. Note: This is only updated to the latest release,
-indicated by the latest commit on the master branch. If you want to train your own models
-or mess with the source code, you'll need to follow the **Source Install** instructions below.
+First create a virtual environment to install python packages.
 
-### Binary Install
-
-First download `precise-engine.tar.gz` from the [precise-data][precise-data] GitHub
-repo. This will get the latest stable version (the master branch). Note that this requires the models to be built the the same latest version in the master branch. Currently, we support both 64 bit Linux desktops (x86_64) and the Raspberry Pi (armv7l).
-
-[precise-data]: https://github.com/mycroftai/precise-data/tree/dist
-
-Next, extract the tar to the folder of your choice. The following commands will work for the pi:
-
-```bash
-ARCH=armv7l
-wget https://github.com/MycroftAI/precise-data/raw/dist/$ARCH/precise-engine.tar.gz
-tar xvf precise-engine.tar.gz
-```
-
-Now, the Precise binary exists at `precise-engine/precise-engine`.
-
-Next, install the Python wrapper with `pip3` (or `pip` if you are on Python 2):
-
-```bash
-sudo pip3 install precise-runner
-```
-
-Finally, you can write your program, passing the location of the precise binary like shown:
-
-```python
-#!/usr/bin/env python3
-
-from precise_runner import PreciseEngine, PreciseRunner
-
-engine = PreciseEngine('precise-engine/precise-engine', 'my_model_file.pb')
-runner = PreciseRunner(engine, on_activation=lambda: print('hello'))
-runner.start()
+```python3 -m venv venv-name
+source /path/to/venv/venv-name/bin/activate
+pip intsall --upgrade pip
 ```
 
 ### Source Install
 
-Start out by cloning the repository:
+Start out by cloning `dev` branch of the repository:
 
 ```bash
-git clone https://github.com/mycroftai/mycroft-precise
+git clone https://github.com/bkhti4/mycroft-precise.git
 cd mycroft-precise
 ```
-
-If you would like your models to run on an older version of precise, like the
-stable version the binary install uses, check out the master branch.
-
-Next, install the necessary system dependencies. If you are on Ubuntu, this
-will be done automatically in the next step. Otherwise, feel free to submit
-a PR to support other operating systems. The dependencies are:
-
- - python3-pip
- - libopenblas-dev
- - python3-scipy
- - cython
- - libhdf5-dev
- - python3-h5py
- - portaudio19-dev
 
 After this, run the setup script:
 
@@ -109,8 +48,9 @@ After this, run the setup script:
 
 Finally, you can write your program and run it as follows:
 ```bash
-source .venv/bin/activate  # Change the python environment to include precise library
+source ./path/to/venv/venv-name/bin/activate  # Change the python environment to include precise library
 ```
+
 Sample Python program:
 ```python
 #!/usr/bin/env python3
@@ -133,10 +73,3 @@ your microphone:
 source .venv/bin/activate  # Gain access to precise-* executables
 precise-listen my_model_file.pb
 ```
-
-## How it Works
-
-At it's core, Precise uses just a single recurrent network, specifically a GRU.
-Everything else is just a matter of getting data into the right form.
-
-![Architecture Diagram](https://images2.imgbox.com/f7/44/6N4xFU7D_o.png)
