@@ -27,7 +27,8 @@ To collect data your own data, use the [data collection repo](https://github.com
 
 First create a virtual environment to install python packages.
 
-```python3 -m venv venv-name
+```bash
+python3 -m venv venv-name
 source /path/to/venv/venv-name/bin/activate
 pip intsall --upgrade pip
 ```
