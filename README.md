@@ -18,6 +18,11 @@ running through the **source install instructions** first.
 **Note: Please use the training-guide mentioned in the link. It's really helpful and the repo is tested using the commands mentioned in the link.**
 Custom training Method [link](https://github.com/MycroftAI/mycroft-precise/wiki/Training-your-own-wake-word#how-to-train-your-own-wake-word)
 
+### Data Collection
+
+To collect data your own data, use the [data collection repo](https://github.com/AmateurAcademic/wakeword-recorder-py.git) by Bartmoss and Dan. 
+
+
 ## Installation
 
 First create a virtual environment to install python packages.
@@ -41,6 +46,7 @@ After this, run the setup script:
 ```bash
 ./setup.sh
 ```
+## Usage
 
 Finally, you can write your program and run it as follows:
 ```bash
@@ -61,11 +67,23 @@ runner.start()
 In addition to the `precise-engine` executable, doing a **Source Install** gives you
 access to some other scripts. You can read more about them [here][executables].
 One of these executables, `precise-listen`, can be used to test a model using
-your microphone:
+your microphone after the model has been trained:
 
 [executables]:https://github.com/MycroftAI/mycroft-precise/wiki/Training-your-own-wake-word#how-to-train-your-own-wake-word
 
 ```bash
 source .venv/bin/activate  # Gain access to precise-* executables
-precise-listen my_model_file.pb
+precise-listen my_model_file.net
+```
+
+To convert it into tflite run
+
+```bash
+precise-convert my_model_file.net
+```
+
+And you can run then tflite
+
+```bash
+precise-listen my_model_file.tflite
 ```
