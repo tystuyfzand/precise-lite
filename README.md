@@ -1,4 +1,4 @@
-# Mycroft Precise
+# Mycroft Precise-Lite
 
 *A lightweight, simple-to-use, RNN wake word listener.*
 
