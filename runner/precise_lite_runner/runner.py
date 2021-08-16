@@ -19,7 +19,7 @@ from subprocess import PIPE, Popen
 from threading import Thread, Event
 
 
-class Engine(object):
+class Engine:
     def __init__(self, chunk_size=2048):
         self.chunk_size = chunk_size
 
@@ -73,7 +73,7 @@ class ListenerEngine(Engine):
         self.get_prediction = listener.update
 
 
-class ReadWriteStream(object):
+class ReadWriteStream:
     """
     Class used to support writing binary audio data at any pace,
     optionally chopping when the buffer gets too large
@@ -142,7 +142,7 @@ class TriggerDetector:
         return False
 
 
-class PreciseRunner(object):
+class PreciseRunner:
     """
     Wrapper to use Precise. Example:
     >>> def on_act():
