@@ -107,8 +107,7 @@ class TrainIncrementalScript(TrainScript):
                 validation_data=test_data, callbacks=self.callbacks, initial_epoch=self.epoch
             )
         finally:
-            self.listener.runner.model.save(self.args.model + '.h5') # Save with '.h5' file extension to force format
-            rename(self.args.model + '.h5', self.args.model) # Rename with original
+            self.listener.runner.model.save(self.args.model + '/') # Save with trailing slash to force file format
 
     def train_on_audio(self, fn: str):
         """Run through a single audio file"""
