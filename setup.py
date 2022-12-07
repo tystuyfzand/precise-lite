@@ -65,7 +65,7 @@ setup(
     },
     install_requires=[
         'numpy',
-        'tensorflow==2.3.1',
+        'tensorflow==2.4.4',
         'sonopy',
         'pyaudio',
         'h5py',
