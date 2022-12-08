@@ -17,6 +17,8 @@ from tensorflow.keras.callbacks import LambdaCallback
 from os.path import splitext, isfile
 from prettyparse import Usage
 from typing import Any, Tuple
+import tensorflow as tf
+import datetime
 
 from precise_lite.model import create_model, ModelParams
 from precise_lite.params import inject_params, save_params
@@ -103,8 +105,12 @@ class TrainScript(BaseScript):
             self.samples = set()
             self.hash_to_ind = {}
 
+        log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+        tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
+
         self.callbacks = [
           checkpoint,
+          tensorboard_callback,
           LambdaCallback(on_epoch_end=on_epoch_end),
         ]
 
